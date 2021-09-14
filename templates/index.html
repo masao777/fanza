@@ -1,0 +1,38 @@
+<!DOCTYPE html html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <header>
+        <h1>検索！！</h1>
+    </header>
+    <main>
+        <form class='form' method="POST">
+            {% csrf_token %}
+            <table>{{form1.as_table}}</table>
+            <tr>
+                <td colspan='2'><input type="submit" value="Submit"></td>
+            </tr>
+        </form>
+        <p>合計：{{total}}人</p>
+        {% for list in serchlist %}
+        <h3>{{list.name}}</h3>
+        {% if list.imageURL.large == None %}
+        <img src="https://joeschmoe.io/api/v1/random" alt="" width="125" height="125">
+        {% else %}
+        <img src="{{list.imageURL.large}}" alt="">
+        {% endif %}
+        <p>カップ数：{{list.cup}}<p>
+        <p>ウエスト：{{list.waist}}</p>
+        <p>ヒップ：{{list.hip}}</p>
+        <p>身長：{{list.height}}</p>
+        <p>生年月日：{{list.birthday}}</p>
+        <p>出身地：{{list.prefectures}}</p>
+        <p>出演作品：<a href="{{list.listURL.digital}}">こちら</a></p>
+        {% endfor %}
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>
